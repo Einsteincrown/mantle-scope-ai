@@ -1,16 +1,75 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search, MessageSquare, Wallet, FlaskConical, Globe } from "lucide-react";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const features = [
+  { icon: MessageSquare, title: "AI Chat", desc: "Ask anything about Mantle — protocols, tokens, strategies.", link: "/chat" },
+  { icon: Wallet, title: "Wallet Analysis", desc: "Paste any address for on-chain stats and AI risk scoring.", link: "/wallet" },
+  { icon: FlaskConical, title: "Token Research", desc: "Deep-dive research on any token or DeFi protocol.", link: "/research" },
+  { icon: Globe, title: "Ecosystem Explorer", desc: "Browse the full Mantle ecosystem directory.", link: "/ecosystem" },
+];
+
+export default function Index() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const q = query.trim();
+    if (!q) return;
+    if (/^0x[a-fA-F0-9]{40}$/.test(q)) {
+      navigate(`/wallet/${q}`);
+    } else {
+      navigate(`/research?q=${encodeURIComponent(q)}`);
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="mx-auto max-w-7xl px-4">
+        {/* Hero */}
+        <section className="flex flex-col items-center py-24 text-center">
+          <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Research Smarter. Trade Safer.{" "}
+            <span className="text-primary">Powered by AI on Mantle.</span>
+          </h1>
+          <p className="mt-4 max-w-xl text-muted-foreground">
+            Your all-in-one AI research hub for the Mantle blockchain — analyze wallets, explore protocols, and chat with on-chain data.
+          </p>
+
+          <div className="mt-10 flex w-full max-w-lg gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="Search token, protocol, or paste a wallet address..."
+                className="pl-10 bg-card border-border/60 focus-visible:ring-primary"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              />
+            </div>
+            <Button onClick={handleSearch}>Search</Button>
+          </div>
+        </section>
+
+        {/* Feature Cards */}
+        <section className="grid gap-4 pb-24 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((f) => (
+            <button
+              key={f.title}
+              onClick={() => navigate(f.link)}
+              className="group rounded-xl border border-border/50 bg-card p-6 text-left transition-all hover:border-primary/40 hover:shadow-[0_0_24px_-6px_hsl(160,100%,41.4%,0.15)]"
+            >
+              <f.icon className="mb-3 h-8 w-8 text-primary transition-transform group-hover:scale-110" />
+              <h3 className="font-semibold">{f.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
+            </button>
+          ))}
+        </section>
+      </main>
     </div>
   );
-};
-
-const Index = PlaceholderIndex;
-
-export default Index;
+}
