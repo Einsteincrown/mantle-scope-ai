@@ -115,16 +115,20 @@ export default function Index() {
 
         {/* Navigation Cards */}
         <section className="grid gap-4 pb-24 sm:grid-cols-2 lg:grid-cols-4">
-          {navCards.map((f) => (
-            <button
+          {navCards.map((f, i) => (
+            <motion.button
               key={f.title}
               onClick={() => navigate(f.link)}
-              className="group rounded-xl border border-border/50 bg-card p-6 text-left transition-all hover:border-primary/40 hover:shadow-[0_0_24px_-6px_hsl(160,100%,41.4%,0.15)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.8 + i * 0.08 }}
+              whileHover={{ y: -4, boxShadow: "0 12px 32px -8px hsl(160 100% 41.4% / 0.15)" }}
+              className="group rounded-xl border border-border/50 bg-card p-6 text-left transition-colors hover:border-primary/40"
             >
               <f.icon className="mb-3 h-8 w-8 text-primary transition-transform group-hover:scale-110" />
               <h3 className="font-semibold">{f.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
-            </button>
+            </motion.button>
           ))}
         </section>
       </main>
