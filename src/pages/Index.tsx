@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
