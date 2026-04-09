@@ -3,9 +3,8 @@
 **Research Smarter. Trade Safer. Powered by AI on Mantle.**
 
 MantleScope is an AI-powered on chain research agent built for the Mantle 
-ecosystem. It lets anyone, traders, researchers, or newcomers — research 
-wallets, tokens, and protocols on Mantle using plain English. No technical 
-knowledge required.
+ecosystem. It lets anyone, traders, researchers, or newcomers research 
+wallets, tokens, and protocols on Mantle using plain English.
 
 ---
 
@@ -13,7 +12,7 @@ knowledge required.
 
 Most people navigate DeFi blind. They can't read raw on-chain data, can't 
 tell a risky wallet from a safe one, and have no easy way to research what's 
-actually happening on Mantle. So they guess — and guessing is expensive.
+actually happening on Mantle. So they guess and guessing is expensive.
 
 ## The Solution
 
@@ -58,18 +57,6 @@ real answers.
 - Anthropic Claude API
 - Mantle Public RPC — `https://rpc.mantle.xyz`
 - Deployed on Vercel
-
----
-
-## Brand Colors
-
-| Role | Hex |
-|---|---|
-| Background | `#000000` |
-| Accent Green | `#00D395` |
-| Secondary Green | `#00A87E` |
-| Card Surface | `#111111` |
-| Text | `#FFFFFF` |
 
 ---
 
